@@ -8,15 +8,13 @@
 #define ANSI_COLOR_BLACK "\e[40m"
 
 #define LOG_RED(X) printf("%s%s%s",ANSI_COLOR_RED,X,ANSI_COLOR_RESET)
-#define LOG_BLACK(X) printf("%s%s%s",ANSI_COLOR_BLACK,X,ANSI_COLOR_RESET)
+#define LOG_BLACK(X) printf("%s",X)
 #define LOG_WHITE(X) printf("%s%s%s",ANSI_COLOR_WHITE,X,ANSI_COLOR_RESET)
 #define LOG_GREEN(X) printf("%s%s%s",ANSI_COLOR_GREEN,X,ANSI_COLOR_RESET)
 #define LOG_YELLOW(X) printf("%s%s%s",ANSI_COLOR_YELLOW,X,ANSI_COLOR_RESET)
 
-
-#include <windows.h>
 void print_map(int map[24][80]){
-    system("cls");
+    printf("\x1b[H");
     for (int i=0;i<24;i++){
         for (int j=0;j<80;j++){
             if(map[i][j]==1)
@@ -31,7 +29,7 @@ void print_map(int map[24][80]){
         }
         printf("\n");
     }
-
+    system("sleep 0.03");
 }
 int slove_maze(int map[24][80],int current[2],int end[2]){
     const int x=current[0];
@@ -142,6 +140,4 @@ int main(void) {
     slove_maze(map,s_p,e_p);
     map[s_x][s_y]=4;
     print_map(map);
-
-
 }
